@@ -13,20 +13,20 @@ const Main = () => {
     Offers
     </li>*/
   return (
-    <nav class="navbar navbar-expand-sm navbar-light bg-primary">
-	  <div class="container-fluid ">
-		<Link class="navbar-brand text-white" to='/'>Navbar</Link>
-		<Link class={`navbar-brand text-white ${pathMathRoute('/') ? 'active': ''}`} to='/'>Home</Link>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-sm navbar-light bg-primary">
+	  <div className="container-fluid ">
+		<Link className="navbar-brand text-white" to='/'>Navbar</Link>
+		<Link className={`navbar-brand text-white ${pathMathRoute('/') ? 'active': ''}`} to='/'>Home</Link>
+		<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span className="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-		  <ul class="navbar-nav ">
-			<li class="nav-item">
-			  <Link class={`nav-link text-white ${pathMathRoute('/register') ? 'active': ''}`} to='/register' aria-current="page">Register</Link>
+		<div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+		  <ul className="navbar-nav ">
+			<li className="nav-item">
+			  <Link className={`nav-link text-white ${pathMathRoute('/register') ? 'active': ''}`} to='/register' aria-current="page">Register</Link>
 			</li>
-			<li class="nav-item">
-			  <Link class={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login'>Login</Link>
+			<li className="nav-item">
+			  <Link className={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login'>Login</Link>
 			</li>			
 		  </ul>		  
 		</div>

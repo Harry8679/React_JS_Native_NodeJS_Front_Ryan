@@ -1,32 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Input from '../components/forms/Input';
+import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
+// import dotenv from 'dotenv';
+
+// dotenv.config();
 
 const Register = () => {
+  console.log('REACT_APP_API', process.env.REACT_APP_API);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [confirm, setConfirm] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (password !== confirm) {
+        toast.error('Passwords do not match');
+        return;
+      }
+      // console.log(`Register user ${name}, ${email}, ${password}}`)
+      const { data } = await axios.post(`${process.env.REACT_APP_API}/signup`, { name, email, password});
+      console.log('data', data);
+      console.log('data 2');
+      if (data.error) {
+        toast.error(data.error);
+        return;
+      } else {
+        // alert('Test');
+        toast.success('Successfully registered');
+        console.log('registration success', data);
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
   return (
     <div className='d-flex justify-content-center align-items-center vh-100' style={{ marginTop: '-100px' }}>
+      <Toaster />
       <div className="container">
         <div className="row">
             <div className="col-md-6 offset-md-3">
                 <h1 className='fw-bold mb-3'>Register</h1>
 
-                <form>
-                    <div className="mb-3">
-                        <label for="exampleInputEmail1" className="form-label">Email address</label>
-                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                    </div>
+                <form onSubmit={handleSubmit}>
+                    <Input value={name} setValue={setName} label='Full name' type='text' />
+                    <Input value={email} setValue={setEmail} label='Email address' type='email' />
+                    <Input value={password} setValue={setPassword} label='Password' type='password' />
+                    <Input value={confirm} setValue={setConfirm} label='Password confirm' type='password' />
 
-                    <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" />
-                    </div>
-
-                    <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary" disabled={!name || !email || email.length < 6 || password.length < 6}>Submit</button>
                 </form>
+                {/* <pre>{JSON.stringify({email, password}, null, 4)}</pre> */}
             </div>
         </div>
       </div>
