@@ -9,9 +9,7 @@ const Main = () => {
           return true;
       }
     };
-    /* li className={`cursor-pointer py-3 text-sm font-semibold border-b-[3px] border-b-red-500 ${pathMathRoute('/offers') ? 'text-black': 'text-gray-400 border-b-[3px] border-b-transparent'}`} onClick={() => navigate('/offers')}>
-    Offers
-    </li>*/
+	
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-primary">
 	  <div className="container-fluid ">

@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import Input from '../components/forms/Input';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
 
 const Register = () => {
-  console.log('REACT_APP_API', process.env.REACT_APP_API);
+  // console.log('REACT_APP_API', process.env.REACT_APP_API);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -20,7 +17,8 @@ const Register = () => {
         toast.error('Passwords do not match');
         return;
       }
-      // console.log(`Register user ${name}, ${email}, ${password}}`)
+      // console.log(`Register user ${name}, ${email}, ${password}}`);
+      console.log('data 1');
       const { data } = await axios.post(`${process.env.REACT_APP_API}/signup`, { name, email, password});
       console.log('data', data);
       console.log('data 2');
@@ -28,9 +26,7 @@ const Register = () => {
         toast.error(data.error);
         return;
       } else {
-        // alert('Test');
         toast.success('Successfully registered');
-        console.log('registration success', data);
       }
     } catch(err) {
       console.log(err);
