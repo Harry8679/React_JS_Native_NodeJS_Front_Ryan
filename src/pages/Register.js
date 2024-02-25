@@ -13,7 +13,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [confirm, setConfirm] = useState('');
 
-  console.log('context => ', auth);
+  // console.log('context => ', auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +29,10 @@ const Register = () => {
         toast.error(data.error);
         return;
       } else {
+        // Context
         setAuth(data);
+        // save in the local storage
+        localStorage.setItem('token', JSON.stringify(data));
         toast.success('Successfully registered');
       }
     } catch(err) {
