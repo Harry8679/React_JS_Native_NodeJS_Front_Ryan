@@ -23,14 +23,13 @@ const Register = () => {
         return;
       }
       // console.log(`Register user ${name}, ${email}, ${password}}`);
-      console.log('data 1');
       const { data } = await axios.post(`${process.env.REACT_APP_API}/signup`, { name, email, password});
-      console.log('data', data);
-      console.log('data 2');
+      // console.log('data', data);
       if (data.error) {
         toast.error(data.error);
         return;
       } else {
+        setAuth(data);
         toast.success('Successfully registered');
       }
     } catch(err) {
