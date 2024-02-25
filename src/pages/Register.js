@@ -32,7 +32,7 @@ const Register = () => {
         // Context
         setAuth(data);
         // save in the local storage
-        localStorage.setItem('token', JSON.stringify(data));
+        localStorage.setItem('auth', JSON.stringify(data));
         toast.success('Successfully registered');
       }
     } catch(err) {
