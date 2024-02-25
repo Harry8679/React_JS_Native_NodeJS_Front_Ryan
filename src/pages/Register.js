@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Input from '../components/forms/Input';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { AuthContext } from '../context/auth';
 
 const Register = () => {
+  // Context
+  const [auth, setAuth] = useContext(AuthContext);
   // console.log('REACT_APP_API', process.env.REACT_APP_API);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirm, setConfirm] = useState('');
+
+  console.log('context => ', auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -2,6 +2,14 @@ import { useState, createContext } from 'react';
 
 const AuthContext = createContext();
 
-const AuthProvider = () => {
-    const [auth, setAuth] = useState(null);
+const AuthProvider = ({ children }) => {
+    const [auth, setAuth] = useState('EBANG MEZUI');
+
+    return (
+        <AuthContext.Provider value={[auth, setAuth]}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
+
+export { AuthContext, AuthProvider };
