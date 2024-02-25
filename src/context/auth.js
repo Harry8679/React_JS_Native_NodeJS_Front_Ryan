@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
+import { getFromLocalStorage } from '../helpers/auth.helper';
 
 const AuthContext = createContext();
 
@@ -6,11 +7,8 @@ const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(null);
 
     useEffect(() => {
-        const auth = localStorage.getItem('auth');
-        
-        if (auth) {
-            setAuth(JSON.parse(auth));
-        }
+        let value = getFromLocalStorage('auth');
+        setAuth(value);
     }, []);
 
     return (

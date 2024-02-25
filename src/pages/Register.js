@@ -3,6 +3,7 @@ import Input from '../components/forms/Input';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { AuthContext } from '../context/auth';
+import { saveInLocalStorage } from '../helpers/auth.helper';
 
 const Register = () => {
   // Context
@@ -32,7 +33,8 @@ const Register = () => {
         // Context
         setAuth(data);
         // save in the local storage
-        localStorage.setItem('auth', JSON.stringify(data));
+        // localStorage.setItem('auth', JSON.stringify(data));
+        saveInLocalStorage('auth', data);
         toast.success('Successfully registered');
       }
     } catch(err) {
