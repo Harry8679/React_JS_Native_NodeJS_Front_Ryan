@@ -30,23 +30,35 @@ const Main = () => {
 		</button>
 		{auth !== null && auth !== undefined ? (
 			<div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-			<ul className="navbar-nav ">
-			  <li className="nav-item">
-				<Link className={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login' onClick={logout}>Logout</Link>
-			  </li>			
-			</ul>		  
-		  </div>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						{auth?.user?.name}
+					</button>
+					<ul class="dropdown-menu">
+						{/* <li className="nav-item">
+							<Link className={`dropdown-item nav-link text-black ${pathMathRoute('/login') ? 'active': ''}`} to='/login' onClick={logout}>Logout</Link>
+						</li> */}
+						<li><Link className="dropdown-item" to="/login" onClick={logout}>Logout</Link></li>
+						<li><a className="dropdown-item" href="#">Something else here</a></li>
+					</ul>
+				</div>
+				{/* <ul className="navbar-nav ">
+				<li className="nav-item">
+					<Link className={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login' onClick={logout}>Logout</Link>
+				</li>			
+				</ul>		   */}
+			</div>
 		):(
 			<div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-		  <ul className="navbar-nav ">
-			<li className="nav-item">
-			  <Link className={`nav-link text-white ${pathMathRoute('/register') ? 'active': ''}`} to='/register' aria-current="page">Register</Link>
-			</li>
-			<li className="nav-item">
-			  <Link className={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login'>Login</Link>
-			</li>			
-		  </ul>		  
-		</div>
+				<ul className="navbar-nav ">
+					<li className="nav-item">
+					<Link className={`nav-link text-white ${pathMathRoute('/register') ? 'active': ''}`} to='/register' aria-current="page">Register</Link>
+					</li>
+					<li className="nav-item">
+					<Link className={`nav-link text-white ${pathMathRoute('/login') ? 'active': ''}`} to='/login'>Login</Link>
+					</li>			
+				</ul>		  
+			</div>
 		)}
 	  </div>
 	</nav>
