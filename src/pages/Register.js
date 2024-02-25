@@ -15,6 +15,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,15 +24,19 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       if (password !== confirm) {
         toast.error('Passwords do not match');
+        setLoading(false);
         return;
       }
+      // setLoading(true);
       // console.log(`Register user ${name}, ${email}, ${password}}`);
       const { data } = await axios.post(`${process.env.REACT_APP_API}/signup`, { name, email, password});
       // console.log('data', data);
       if (data.error) {
         toast.error(data.error);
+        setLoading(false);
         return;
       } else {
         // Context
@@ -40,10 +45,12 @@ const Register = () => {
         // localStorage.setItem('auth', JSON.stringify(data));
         saveInLocalStorage('auth', data);
         toast.success('Successfully registered');
+        setLoading(false);
         navigate('/');
       }
     } catch(err) {
       console.log(err);
+      setLoading(false);
     }
   }
   return (
@@ -61,7 +68,7 @@ const Register = () => {
                     <Input value={confirm} setValue={setConfirm} label='Password confirm' type='password' />
 
                     {/* <button type="submit" className="btn btn-primary" disabled={!name || !email || email.length < 6 || password.length < 6}>Submit</button> */}
-                    <Button name={name} email={email} password={password} />
+                    <Button name={name} email={email} password={password} loading={loading} />
                 </form>
                 {/* <pre>{JSON.stringify({email, password}, null, 4)}</pre> */}
             </div>

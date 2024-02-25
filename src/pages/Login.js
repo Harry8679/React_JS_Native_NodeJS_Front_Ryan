@@ -12,26 +12,31 @@ const Login = () => {
   const [auth, setAuth] = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const { data } = await axios.post(`${process.env.REACT_APP_API}/signin`, { email, password});
       if (data.error) {
         toast.error(data.error);
+        setLoading(false);
         return;
       } else {
         // Context
         setAuth(data);
         // save in the local storage
         saveInLocalStorage('auth', data);
+        setLoading(false);
         toast.success('Successfully logged');
         navigate('/');
       }
     } catch(err) {
       console.log(err);
+      setLoading(false);
     }
   }
   return (
@@ -47,7 +52,7 @@ const Login = () => {
                     <Input value={password} setValue={setPassword} label='Password' type='password' />
 
                     {/* <button type="submit" className="btn btn-primary" disabled={!email || email.length < 6 || password.length < 6}>Submit</button> */}
-                    <Button email={email} password={password} />
+                    <Button email={email} password={password} loading={loading} />
                 </form>
             </div>
         </div>
