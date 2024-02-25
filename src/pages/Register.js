@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { AuthContext } from '../context/auth';
 import { saveInLocalStorage } from '../helpers/auth.helper';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   // Context
@@ -13,6 +14,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirm, setConfirm] = useState('');
+
+  const navigate = useNavigate();
 
   // console.log('context => ', auth);
 
@@ -36,6 +39,7 @@ const Register = () => {
         // localStorage.setItem('auth', JSON.stringify(data));
         saveInLocalStorage('auth', data);
         toast.success('Successfully registered');
+        navigate('/');
       }
     } catch(err) {
       console.log(err);
