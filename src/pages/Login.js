@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AuthContext } from '../context/auth';
 import { saveInLocalStorage } from '../helpers/auth.helper';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/forms/Button';
 
 const Login = () => {
   // Context
@@ -45,9 +46,9 @@ const Login = () => {
                     <Input value={email} setValue={setEmail} label='Email address' type='email' />
                     <Input value={password} setValue={setPassword} label='Password' type='password' />
 
-                    <button type="submit" className="btn btn-primary" disabled={!email || email.length < 6 || password.length < 6}>Submit</button>
+                    {/* <button type="submit" className="btn btn-primary" disabled={!email || email.length < 6 || password.length < 6}>Submit</button> */}
+                    <Button email={email} password={password} />
                 </form>
-                {/* <pre>{JSON.stringify({email, password}, null, 4)}</pre> */}
             </div>
         </div>
       </div>
